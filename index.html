@@ -12,13 +12,25 @@
 </head>
 
 <body>
-    <div class="container" id="cat-container" style="width:50%; margin: 0 auto;">
-        <img id="cat-image" src="" alt="un gato" style="text-align: center;">
-        <button>Nuevo Gato</button>
+    <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
+        <img id="cat-image" src="" alt="un gato">
+        <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
     </div>
 
     <script>
+        document.querySelector('#get-cat').addEventListener('click', getCat);
+
         // Suerte !
+        async function getCat() {
+            const response = await fetch('https://api.thecatapi.com/v1/images/search');
+            const cat = (await response.json())[0];
+            console.log(cat);
+
+            const catImage = document.querySelector('#cat-image');
+            catImage.src = cat.url;
+            catImage.style.width = cat.width + 'px';
+            catImage.style.height = cat.height + 'px';
+        }
     </script>
 </body>
 

@@ -18,6 +18,10 @@ Whiskas nos ha contratado para implementar una App que, cada vez que hacemos cli
 4. La imagen de un nuevo se ve en el contenedor adecuado al hace clic - **1 pt.**
 5. La imagen del gato tienen la anchura y altura que proporciona la API - **1 pt.**
 
+Atención, para el último punto, debes comprobar que efectivamente se establecido la anchura y la altura de la imagen usando el inspector de estilos
+
+<img src="https://oscarm.tinytake.com/media/147286d?filename=1683963725130_TinyTake13-05-2023-09-41-41_638195605251346944.png&sub_type=thumbnail_preview&type=attachment&width=1199&height=502" title="Powered by TinyTake Screen Capture"/><br>
+
 ### BONUS DOG-NO-BULLING (no puntuable)
 
 Si tras completar toda la evaluación te queda tiempo, implementa esta funcionalidad nueva.
