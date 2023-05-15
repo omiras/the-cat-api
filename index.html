@@ -14,6 +14,10 @@
 <body>
     <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
         <img id="cat-image" src="" alt="un gato">
+        <select name="select-animal" id="select-animal">
+            <option value="cat">Gato</option>
+            <option value="dog">Perro</option>
+        </select>
         <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
     </div>
 
@@ -23,45 +27,52 @@
         // Get all the HTML elements that we are gonna use.
         const catImage = document.getElementById("cat-image")
         const btn = document.getElementById("get-cat")
+        const selectField = document.getElementById("select-animal")
 
-        // Add an event listener to the button
-        btn.addEventListener('click', async () => {
-            // console.log("Me has dado click 🤕")
-            
-            //getCatfromApi()
-            // Call the function to recieve data from de API
-            const dataFromApi =  await getCatfromApi()
-            //console.log(dataFromApi)
-            
+        // Add event listener to de selector.
+        selectField.addEventListener("change", async (event) => {
+
+            const pet = event.target.value
+            //console.log(pet)
+
+            const dataFromApi = await getPetfromApi(pet)
+            console.log("Data from api", dataFromApi)
+
             const catImage = dataFromApi[0].url
             const imageHeight = dataFromApi[0].height
             const imageWidth = dataFromApi[0].width
-            //console.log(imageHeight, imageWidth)
 
-            // Call the function and pass the image properties.
-            updateDOM(catImage, imageHeight, imageWidth)
+            console.log(catImage,imageHeight,imageWidth)
+
         })
 
-        async function getCatfromApi(){
+        btn.addEventListener("click",  () => {
+            console.log("Me has dado click")
+        } )
+
+        async function getPetfromApi(pet) {
 
             // Call the API using the fetch method.
-            const url = `https://api.thecatapi.com/v1/images/search`
+
+            const url = `https://api.the${pet}api.com/v1/images/search`
+
             const response = await fetch(url)
+
             const data = await response.json()
 
             // Show the result of the API
             //console.log(data)
             return data
-            
+
         }
 
-        function updateDOM(image, height, width){
+        function updateDOM(image, height, width) {
             // Changing the image, height and width
             catImage.src = image;
             catImage.style.height = `${height}px`
             catImage.style.width = `${width}px`;
         }
-        
+
     </script>
 </body>
 
