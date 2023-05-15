@@ -19,6 +19,26 @@
 
     <script>
         // Suerte !
+
+        document.querySelector('#get-cat').addEventListener('click', function () {
+            console.log('click');
+
+            fetch('https://api.thecatapi.com/v1/images/search')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                let image = document.querySelector('#cat-image')
+
+                image.src = data[0].url;
+
+                image.style.height = data[0].height + 'px';
+                image.style.width = data[0].width + 'px';
+
+            });
+
+        });
+
     </script>
 </body>
 

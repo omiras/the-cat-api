@@ -9,8 +9,16 @@ Web de la [API](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6Oh
 ## Preguntas previas
 
 1. ¿Porque podemos ver un texto 'un gato' al cargar la app por primera vez?
+
+Perquè és el text que hi ha a la descripció de la imatge (alt:), i com que la imatge no està carregada es veu el text (no hi ha font, és a dir, el src: (source) està buida en el html). Quan la imatge es carregui correctament gràcies al codi amb JavaScript, el text 'un gato' ja no es veurà i la imatge es veurà correctament.
+
 2. ¿Cuál es la URL que nos va a proporcionar un gato aleatório?
+
+https://api.thecatapi.com/v1/images/search
+
 3. Describe con exactitud el tipo de dato que devuelve esta API
+
+Un array amb un objecte d'imatge i que té diferents propietats, com ara l'altura, l'amplada, el url i altre tipus d'informació.
 
 ## Ejercicio y evaluación
 
