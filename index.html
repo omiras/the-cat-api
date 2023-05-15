@@ -28,19 +28,19 @@
         btn.addEventListener('click', async () => {
             // console.log("Me has dado click 🤕")
             
-            getCatfromApi()
+            //getCatfromApi()
+            // Call the function to recieve data from de API
             const dataFromApi =  await getCatfromApi()
-            console.log(dataFromApi)
+            //console.log(dataFromApi)
             
             const catImage = dataFromApi[0].url
             const imageHeight = dataFromApi[0].height
             const imageWidth = dataFromApi[0].width
-            console.log(imageHeight, imageWidth)
+            //console.log(imageHeight, imageWidth)
 
+            // Call the function and pass the image properties.
             updateDOM(catImage, imageHeight, imageWidth)
-
         })
-
 
         async function getCatfromApi(){
 
@@ -51,22 +51,16 @@
 
             // Show the result of the API
             //console.log(data)
-
             return data
             
         }
 
         function updateDOM(image, height, width){
-            
+            // Changing the image, height and width
             catImage.src = image;
             catImage.style.height = `${height}px`
             catImage.style.width = `${width}px`;
-           
         }
-
-
-        
-
         
     </script>
 </body>
