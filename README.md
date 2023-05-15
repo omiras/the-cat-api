@@ -7,8 +7,11 @@ Whiskas nos ha contratado para implementar una App que, cada vez que hacemos cli
 ## Preguntas previas
 
 1. ¿Porque podemos ver un texto 'un gato' al cargar la app por primera vez?
-2. ¿Cuál es la URL que nos va a proporcionar un gato aleatório?
-3. Describe con exactitud el tipo de dato que devuelve esta API
+    Se utiliza la propiedad html o etiqueta alt, la cual si la imagen no se puede monstrar manda un texto alternativo.
+1. ¿Cuál es la URL que nos va a proporcionar un gato aleatório?
+    La Url es https://api.thecatapi.com/v1/images/search
+1. Describe con exactitud el tipo de dato que devuelve esta API
+   La Api devuelve un JSON, tipo de texto utilizado para intercambio de datos entre diferentes dispositivos. 
 
 ## Ejercicio y evaluación
 
