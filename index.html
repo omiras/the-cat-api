@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css"
-        integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css"
+      integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>🐈 Gato-API 🐈</title>
-</head>
+  </head>
 
-<body>
-    <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
-        <img id="cat-image" src="" alt="un gato">
-        <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
+  <body>
+    <div class="container" id="cat-container" style="width: 75%; margin: 1rem auto; text-align: center">
+      <img id="cat-image" src="" alt="un gato" />
+      <button id="get-cat" style="margin-top: 1rem" value='click'>Nuevo Gato</button>
     </div>
 
     <script>
-        // Suerte !
-    </script>
-</body>
+      // Suerte !
+      let imgCat = document.querySelector("#cat-image");
+      let buttonCat = document.querySelector("#get-cat");
 
+      function getCat(){
+        let catUrl = ('https://api.thecatapi.com/v1/images/search');
+
+        fetch(catUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            imgCat.src = data[0].url;
+            console.log(data[0].url);
+          })
+          .catch((error) => console.log(error));
+      }
+
+      buttonCat.addEventListener('click', getCat);
+
+      </script>
+  </body>
 </html>

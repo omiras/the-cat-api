@@ -7,8 +7,11 @@ Whiskas nos ha contratado para implementar una App que, cada vez que hacemos cli
 ## Preguntas previas
 
 1. ¿Porque podemos ver un texto 'un gato' al cargar la app por primera vez?
+Por qué se usa la función alt para describir el contenido de una imagen. Aparece en lugar de la imagen cuando no se carga.
 2. ¿Cuál es la URL que nos va a proporcionar un gato aleatório?
+https://api.thecatapi.com/v1/images/search
 3. Describe con exactitud el tipo de dato que devuelve esta API
+Objeto
 
 ## Ejercicio y evaluación
 
@@ -28,3 +31,5 @@ Si tras completar toda la evaluación te queda tiempo, implementa esta funcional
 
 1. Crea un [selector](https://www.w3schools.com/tags/tag_select.asp) para escoger entre perros y gatos.
 2. La [API](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=8FfZAkNzs) debe recuperar un perro o un gato, en función del animal escogido.
+
+
