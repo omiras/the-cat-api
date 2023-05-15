@@ -1,25 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css"
-        integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css"
+      integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>🐈 Gato-API 🐈</title>
-</head>
+  </head>
 
-<body>
-    <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
-        <img id="cat-image" src="" alt="un gato">
-        <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
+  <body>
+    <div
+      class="container"
+      id="cat-container"
+      style="width: 75%; margin: 1rem auto; text-align: center"
+    >
+      <!-- ¿Porque podemos ver un texto 'un gato' al cargar la app por primera vez?
+        -Porque és el texto informativo de cuando no se muestra la imágen especificado en el alt. -->
+      <img id="image" src="" alt="un gato o un perro" />
+      <button id="get-cat" style="margin-top: 1rem">Nuevo Gato</button>
+      <button id="get-dog" style="margin-top: 1rem">Nuevo Perro</button>
+
+      <select id="select-catdog" class="form-select">
+        <option selected>Select cat or dog</option>
+        <option id="get-cat" value="cats">Cats</option>
+        <option value="dogs">Dogs</option>
+      </select>
     </div>
 
     <script>
-        // Suerte !
-    </script>
-</body>
+      // Suerte !
+      const buttonCat = document.querySelector("#get-cat");
+      const buttonDog = document.querySelector("#get-dog");
+      const image = document.querySelector("#image");
 
+      //BULLYNG BONUS
+      const selectAnimal = document.querySelector("#select-catdog");
+
+      selectAnimal.addEventListener("change", async (event) => {
+        const selected = event.target.value;
+
+        if (selected === "cats") {
+          buttonDog.style.display = "none";
+          buttonCat.style.display = "block";
+        } else if (selected === "dogs") {
+          buttonCat.style.display = "none";
+          buttonDog.style.display = "block";
+        }
+      });
+
+      buttonDog.addEventListener("click", function () {
+        getRandomDog();
+      });
+
+      async function getRandomDog() {
+        const respuesta = await fetch(
+          "https://api.thedogapi.com/v1/images/search"
+        );
+        const datos = await respuesta.json();
+        console.log(datos);
+
+        image.src = datos[0].url;
+      }
+
+      // PRIMERA PARTE DE EL EXAMEN
+      buttonCat.addEventListener("click", function () {
+        getRandomCat();
+      });
+
+      async function getRandomCat() {
+        const respuesta = await fetch(
+          "https://api.thecatapi.com/v1/images/search"
+        );
+        const datos = await respuesta.json();
+        console.log(datos);
+
+        const anchuraImagen = datos[0].width;
+        const altoImagen = datos[0].height;
+
+        image.src = datos[0].url;
+        image.width = anchuraImagen;
+        image.height = altoImagen;
+      }
+    </script>
+  </body>
 </html>
