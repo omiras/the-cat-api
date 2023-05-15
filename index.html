@@ -19,6 +19,21 @@
 
     <script>
         // Suerte !
+        let button = document.querySelector('#get-cat');
+
+
+
+        button.addEventListener('click', async function () {
+
+            let catImg = document.querySelector('#cat-image');
+            const response = await fetch('https://api.thecatapi.com/v1/images/search')
+            const datos = await response.json()
+            console.log(datos);
+
+            catImg.style.maxWidth = "max-content";
+            catImg.style.maxHeight = "max-content";
+            catImg.src = datos[0].url
+        })
     </script>
 </body>
 
