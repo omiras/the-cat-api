@@ -35,6 +35,26 @@
 
     <script>
       // Suerte !
+      //Implementación buena discord:
+      async function getRandomAnimal(animalType) {
+        let apiUrl = "";
+        if (animalType === "cats") {
+          apiUrl = "https://api.thecatapi.com/v1/images/search";
+        } else if (animalType === "dogs") {
+          apiUrl = "https://api.thedogapi.com/v1/images/search";
+        }
+
+        const respuesta = await fetch(apiUrl);
+        const datos = await respuesta.json();
+        console.log(datos);
+
+        const anchuraImagen = datos[0].width;
+        const altoImagen = datos[0].height;
+        image.src = datos[0].url;
+        image.width = anchuraImagen;
+        image.height = altoImagen;
+      }
+
       const buttonCat = document.querySelector("#get-cat");
       const buttonDog = document.querySelector("#get-dog");
       const image = document.querySelector("#image");
@@ -55,38 +75,38 @@
       });
 
       buttonDog.addEventListener("click", function () {
-        getRandomDog();
+        getRandomAnimal("dogs");
       });
 
-      async function getRandomDog() {
-        const respuesta = await fetch(
-          "https://api.thedogapi.com/v1/images/search"
-        );
-        const datos = await respuesta.json();
-        console.log(datos);
+      // async function getRandomDog() {
+      //   const respuesta = await fetch(
+      //     "https://api.thedogapi.com/v1/images/search"
+      //   );
+      //   const datos = await respuesta.json();
+      //   console.log(datos);
 
-        image.src = datos[0].url;
-      }
+      //   image.src = datos[0].url;
+      // }
 
       // PRIMERA PARTE DE EL EXAMEN
       buttonCat.addEventListener("click", function () {
-        getRandomCat();
+        getRandomAnimal("cats");
       });
 
-      async function getRandomCat() {
-        const respuesta = await fetch(
-          "https://api.thecatapi.com/v1/images/search"
-        );
-        const datos = await respuesta.json();
-        console.log(datos);
+      // async function getRandomCat() {
+      //   const respuesta = await fetch(
+      //     "https://api.thecatapi.com/v1/images/search"
+      //   );
+      //   const datos = await respuesta.json();
+      //   console.log(datos);
 
-        const anchuraImagen = datos[0].width;
-        const altoImagen = datos[0].height;
+      //   const anchuraImagen = datos[0].width;
+      //   const altoImagen = datos[0].height;
 
-        image.src = datos[0].url;
-        image.width = anchuraImagen;
-        image.height = altoImagen;
-      }
+      //   image.src = datos[0].url;
+      //   image.width = anchuraImagen;
+      //   image.height = altoImagen;
+      // }
     </script>
   </body>
 </html>
