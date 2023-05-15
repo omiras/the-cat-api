@@ -15,10 +15,54 @@
     <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
         <img id="cat-image" src="" alt="un gato">
         <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
+        <select>
+            <option value="dog">Perro</option>
+            <option value="cat">Gato</option>
+        </select>
     </div>
 
     <script>
-        // Suerte !
+
+        const petValue = document.querySelector('select')
+        const button = document.querySelector('#get-cat')
+
+        petValue.addEventListener('change', () => {
+
+            button.textContent = `Nuevo ${petValue.value == 'dog' ? 'Perro' : 'Gato'}`
+
+        })
+        
+        
+        
+       
+
+            const apiFetch = async () => {
+
+                const response = await fetch(`https://api.the${petValue.value}api.com/v1/images/search`)
+                const data = await response.json()
+
+                console.log(data)
+
+                document.querySelector('#cat-image').style.width = `${data[0].width}px`
+                document.querySelector('#cat-image').style.height = `${data[0].height}px`
+                document.querySelector('#cat-image').src = data[0].url
+                
+                
+
+            }
+
+
+            button.addEventListener('click', () => {
+                apiFetch()
+            })
+                
+            
+            
+
+      
+
+
+
     </script>
 </body>
 
