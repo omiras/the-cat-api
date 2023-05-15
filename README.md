@@ -7,7 +7,9 @@ Whiskas nos ha contratado para implementar una App que, cada vez que hacemos cli
 ## Preguntas previas
 
 1. ¿Porque podemos ver un texto 'un gato' al cargar la app por primera vez?
+- Se aprecia ese texto porque es lo que esta escrito en el atruibuto alt="un gato" de la etiqueta img.
 2. ¿Cuál es la URL que nos va a proporcionar un gato aleatório?
+
 3. Describe con exactitud el tipo de dato que devuelve esta API
 
 ## Ejercicio y evaluación

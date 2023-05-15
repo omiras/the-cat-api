@@ -18,7 +18,29 @@
     </div>
 
     <script>
-        // Suerte !
+        const boton = document.querySelector("#get-cat");
+        boton.addEventListener("click");
+        console.log(boton);
+
+        function fetchCatImage() {
+            // Hacer una llamada a la API
+            fetch("https://api.thecatapi.com/v1/images/search") // Reemplaza "https://api.example.com/cats" con la URL real de la API de gatos
+                .then(response => response.json())
+                .then(data => {
+                    // Mostrar el resultado de la llamada a la API por consola
+                    console.log(data);
+
+                    // Actualizar la imagen del gato en el contenedor
+                    const catImage = document.getElementById(".cat-image");
+                    catImage.src = data.image_url;
+                    catImage.width = data.width;
+                    catImage.height = data.height;
+                })
+                .catch(error => {
+                    console.error("Error al obtener la imagen del gato:", error);
+                });
+        }
+        
     </script>
 </body>
 
