@@ -19,6 +19,54 @@
 
     <script>
         // Suerte !
+
+        // Get all the HTML elements that we are gonna use.
+        const imgField = document.getElementById("cat-container")
+        const catImage = document.getElementById("cat-image")
+        const btn = document.getElementById("get-cat")
+
+        // Add an event listener to the button
+        btn.addEventListener('click', async () => {
+            // console.log("Me has dado click 🤕")
+            
+            getCatfromApi()
+            const dataFromApi =  await getCatfromApi()
+            console.log(dataFromApi)
+            
+            const catImage = dataFromApi[0].url
+            const imageHeight = dataFromApi[0].height
+            const imageWidth = dataFromApi[0].width
+
+            updateDOM(catImage, imageHeight, imageWidth)
+
+        })
+
+
+        async function getCatfromApi(){
+
+            // Call the API using the fetch method.
+            const url = `https://api.thecatapi.com/v1/images/search`
+            const response = await fetch(url)
+            const data = await response.json()
+
+            // Show the result of the API
+            //console.log(data)
+
+            return data
+            
+        }
+
+        function updateDOM(image, height, width){
+            
+            catImage.src = image;
+            imgField.height = height
+            imgField.width = width
+        }
+
+
+        
+
+        
     </script>
 </body>
 
