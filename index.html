@@ -25,7 +25,7 @@
         // Suerte !
 
         // Get all the HTML elements that we are gonna use.
-        const catImage = document.getElementById("cat-image")
+        const petImage = document.getElementById("cat-image")
         const btn = document.getElementById("get-cat")
         const selectField = document.getElementById("select-animal")
 
@@ -43,13 +43,13 @@
 
             const dataFromApi = await getPetfromApi(clickedAnimal)
 
-            const catImage = dataFromApi[0].url
+            const petImage = dataFromApi[0].url
             const imageHeight = dataFromApi[0].height
             const imageWidth = dataFromApi[0].width
 
             console.log("Data from api", dataFromApi)
 
-            updateDOM(catImage, imageHeight, imageWidth)
+            updateDOM(petImage, imageHeight, imageWidth)
             
         } )
 
@@ -71,9 +71,9 @@
 
         function updateDOM(image, height, width) {
             // Changing the image, height and width
-            catImage.src = image;
-            catImage.style.height = `${height}px`
-            catImage.style.width = `${width}px`;
+            petImage.src = image;
+            petImage.style.height = `${height}px`
+            petImage.style.width = `${width}px`;
         }
 
     </script>
