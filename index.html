@@ -24,29 +24,72 @@
       <button id="get-cat" style="margin-top: 1rem">Nuevo Gato</button>
     </div>
 
+    <form id="dogAndCat">
+      <label for="animal">Choose dog or cat:</label>
+      <select name="animals" id="animals">
+        <option value="cat">Cat</option>
+        <option value="dog">Dog</option>
+      </select>
+      <br /><br />
+      <button id="submit">Click</button>
+      <img id="animal-image" src="" alt="Animal" />
+    </form>
+
     <script>
       // Suerte !
 
-      let getCat = document.querySelector("#get-cat");
+      let getCatButton = document.querySelector("#get-cat");
       let catImage = document.querySelector("#cat-image");
       let url = "https://api.thecatapi.com/v1/images/search";
-      getCat.addEventListener("click", function () {
-        async function getCat() {
-          const response = await fetch(url);
-          const data = await response.json();
-          console.log(data);
-
-          const imgUrl = data[0].url;
-          const width = data[0].width;
-          const height = data[0].height;
-
-          catImage.src = imgUrl;
-          catImage.style.width = width + "px";
-          catImage.style.height = height + "px";
-        }
-
+      getCatButton.addEventListener("click", function () {
         getCat();
       });
+
+      //   BOUNOS<<<<<<<<<<<<<<<<<<<<!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+      const form = document.querySelector("#dogAndCat");
+      const animalSelect = document.querySelector("#animals");
+      const animalImage = document.querySelector("#animal-image");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const selectedAnimal = animalSelect.value;
+
+        if (selectedAnimal === "dog") {
+          getDog();
+        } else if (selectedAnimal === "cat") {
+          getCat();
+        }
+      });
+
+      async function getCat() {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+
+        const imgUrl = data[0].url;
+        const width = data[0].width;
+        const height = data[0].height;
+
+        catImage.src = imgUrl;
+        catImage.style.width = width + "px";
+        catImage.style.height = height + "px";
+      }
+
+      async function getDog() {
+        const response = await fetch(
+          "https://api.thedogapi.com/v1/images/search"
+        );
+        const data = await response.json();
+        console.log(data);
+
+        animalImage.src = data[0].url;
+        const width = data[0].width;
+        const height = data[0].height;
+        animalImage.style.width = width + "px";
+        animalImage.style.height = height + "px";
+      }
     </script>
   </body>
 </html>
