@@ -21,7 +21,6 @@
         // Suerte !
 
         // Get all the HTML elements that we are gonna use.
-        const imgField = document.getElementById("cat-container")
         const catImage = document.getElementById("cat-image")
         const btn = document.getElementById("get-cat")
 
@@ -36,6 +35,7 @@
             const catImage = dataFromApi[0].url
             const imageHeight = dataFromApi[0].height
             const imageWidth = dataFromApi[0].width
+            console.log(imageHeight, imageWidth)
 
             updateDOM(catImage, imageHeight, imageWidth)
 
@@ -59,8 +59,9 @@
         function updateDOM(image, height, width){
             
             catImage.src = image;
-            imgField.height = height
-            imgField.width = width
+            catImage.style.height = `${height}px`
+            catImage.style.width = `${width}px`;
+           
         }
 
 
