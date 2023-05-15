@@ -19,6 +19,28 @@
 
     <script>
         // Suerte !
+        const catImage = document.getElementById('cat-image');
+        const getCatBtn = document.getElementById('get-cat'); 
+
+        getCatBtn.addEventListener('click', async() => {
+            const response = await fetch('https://api.thecatapi.com/v1/images/search');
+            const data = await response.json();
+            console.log(data);
+            catImage.src = data[0].url;
+            catImage.style.width = data[0].width + 'px';
+            catImage.style.height = data[0].height + 'px';
+
+
+            // fetch('https://api.thecatapi.com/v1/images/search')
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         console.log(data);
+            //         catImage.src = data[0].url;
+            //         catImage.style.width = data[0].width + 'px';
+            //         catImage.style.height = data[0].height + 'px';
+            //     })
+            //     .catch(error => console.log(error));
+        });
     </script>
 </body>
 
