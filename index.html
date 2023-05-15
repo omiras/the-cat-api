@@ -33,21 +33,24 @@
         selectField.addEventListener("change", async (event) => {
 
             const pet = event.target.value
-            //console.log(pet)
 
-            const dataFromApi = await getPetfromApi(pet)
-            console.log("Data from api", dataFromApi)
+            getPetfromApi(pet)
+        })
+
+        btn.addEventListener("click", async  () => {
+
+            const clickedAnimal = selectField.value
+
+            const dataFromApi = await getPetfromApi(clickedAnimal)
 
             const catImage = dataFromApi[0].url
             const imageHeight = dataFromApi[0].height
             const imageWidth = dataFromApi[0].width
 
-            console.log(catImage,imageHeight,imageWidth)
+            console.log("Data from api", dataFromApi)
 
-        })
-
-        btn.addEventListener("click",  () => {
-            console.log("Me has dado click")
+            updateDOM(catImage, imageHeight, imageWidth)
+            
         } )
 
         async function getPetfromApi(pet) {
