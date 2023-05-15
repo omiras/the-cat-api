@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css"
-        integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css"
+      integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>🐈 Gato-API 🐈</title>
-</head>
+    
+  </head>
 
-<body>
-    <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
-        <img id="cat-image" src="" alt="un gato">
-        <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
+  <body>
+    <div
+      class="container"
+      id="cat-container"
+      style="width: 75%; margin: 1rem auto; text-align: center"
+    >
+      <img id="cat-image" src="cat-fetch.gif" alt="un gato" />
+      <button id="get-cat" style="margin-top: 1rem">Nuevo Gato</button>
     </div>
 
     <script>
-        // Suerte !
-    </script>
-</body>
+      // Suerte !
+      const getCatButton = document.getElementById("get-cat");
+      const image = document.getElementById("cat-image");
 
+      getCatButton.addEventListener("click", () => {
+        fetch("https://api.thecatapi.com/v1/images/search")
+          .then((response) => response.json())
+          .then((data) => {
+            image.src = data[0].url;
+            image.style.width = `${image.naturalWidth}px`;
+            image.style.height = `${image.naturalHeight}px`;
+            console.log(data);
+          });
+      });
+    </script>
+  </body>
 </html>
