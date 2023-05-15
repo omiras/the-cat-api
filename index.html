@@ -13,12 +13,30 @@
 
 <body>
     <div class="container" id="cat-container" style="width:75%; margin: 1rem auto;text-align: center;">
-        <img id="cat-image" src="" alt="un gato">
+        <img id="cat-image" src="" alt="un gato" width = 176 height = 540>
         <button id="get-cat" style="margin-top: 1rem;">Nuevo Gato</button>
     </div>
 
     <script>
-        // Suerte !
+        document.querySelector("#get-cat").addEventListener('click', function(event){
+            getMichiFromAPI();
+        });
+        function getMichiFromAPI(){
+            const url = 'https://api.thecatapi.com/v1/images/search';
+            console.log('URL: ', url);
+                fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data[0])
+                    const imgUrl = data[0].url;
+                    const imgMichi = document.querySelector("#cat-image");
+                    imgMichi.src = imgUrl;
+                })
+                .catch(error => {
+                    console.error('IMG not found: ', error);
+                })
+        }
+    
     </script>
 </body>
 
