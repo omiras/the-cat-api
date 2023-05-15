@@ -36,6 +36,8 @@
     <script>
       // Suerte !
       //Implementación buena discord:
+      let dataFromApi;
+
       async function getRandomAnimal(animalType) {
         let apiUrl = "";
         if (animalType === "cats") {
@@ -55,6 +57,10 @@
         image.height = altoImagen;
       }
 
+      function updateAnimalInfo(urlImage, width, height) {
+        //query selectors para actualizar dom
+      }
+
       const buttonCat = document.querySelector("#get-cat");
       const buttonDog = document.querySelector("#get-dog");
       const image = document.querySelector("#image");
@@ -63,7 +69,11 @@
       const selectAnimal = document.querySelector("#select-catdog");
 
       selectAnimal.addEventListener("change", async (event) => {
-        const selected = event.target.value;
+        const animalSelected = event.target.value;
+
+        dataFromApi = await getRandomAnimal(animalSelected);
+
+        updateAnimalInfo(dataFromApi.url, dataFromApi.width, dataFromApi.height);
 
         if (selected === "cats") {
           buttonDog.style.display = "none";
